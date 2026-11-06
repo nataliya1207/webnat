@@ -1,1032 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Наталья Плетнева — Верстальщик / WordPress-специалист. Создаю сайты с нуля, оптимизирую под скорость и SEO.">
-    <title>Наталья Плетнева | Верстальщик / WordPress-специалист</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #003366;
-            --accent: #00D1E0;
-            --bg-light: #F8F9FA;
-            --bg-white: #FFFFFF;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Шапка */
-        header {
-            background: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            padding: 10px 0;
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .logo-text span {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 32px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 16px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background: var(--accent);
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            border-radius: 8px;
-            transition: var(--transition);
-            border: 2px solid var(--accent);
-        }
-
-        .btn:hover {
-            background: var(--primary);
-            color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--accent);
-            border-color: var(--accent);
-        }
-
-        .btn-outline:hover {
-            background: var(--accent);
-            color: var(--primary);
-        }
-
-        /* Герой-секция */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #004A80 100%);
-            color: var(--bg-white);
-            padding: 180px 20px 100px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #E0F7FF;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        .hero-decor {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="%23003366" d="M0,32L48,42.7C96,53,192,75,288,85.3C384,96,480,96,576,85.3C672,75,768,53,864,48C960,43,1056,53,1152,64C1248,75,1344,85,1392,90.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat;
-            background-size: cover;
-        }
-
-        /* Секция */
-        .section {
-            padding: 100px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 60px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        /* Обо мне */
-        .about {
-            background: var(--bg-light);
-        }
-
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-text {
-            font-size: 18px;
-            margin-bottom: 40px;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            margin: 60px 0;
-        }
-
-        .skill-card {
-            background: var(--bg-white);
-            padding: 32px 24px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .skill-icon {
-            font-size: 48px;
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
-
-        .skill-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .skill-desc {
-            font-size: 16px;
-            color: var(--text-light);
-        }
-
-        /* Проекты */
-        .projects {
-            background: var(--bg-white);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--bg-white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .project-img {
-            width: 100%;
-            height: 240px;
-            background: linear-gradient(135deg, #003366 0%, #00D1E0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-white);
-            font-size: 48px;
-        }
-
-        .project-content {
-            padding: 24px;
-        }
-
-        .project-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .project-category {
-            font-size: 14px;
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: 12px;
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(0, 209, 224, 0.1);
-            border-radius: 6px;
-        }
-
-        .project-desc {
-            font-size: 16px;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.7;
-        }
-
-        .project-link {
-            display: inline-block;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: var(--transition);
-        }
-
-        .project-link i {
-            margin-left: 6px;
-            transition: var(--transition);
-        }
-
-        .project-link:hover i {
-            transform: translateX(5px);
-        }
-
-        /* Навыки */
-        .skills {
-            background: var(--bg-light);
-        }
-
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skills-columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .skill-column {
-            background: var(--bg-white);
-            padding: 32px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .skill-column h3 {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--accent);
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .skill-list li:last-child {
-            border-bottom: none;
-        }
-
-        .skill-list li i {
-            color: var(--accent);
-            font-size: 16px;
-        }
-
-        .skill-list li span {
-            font-size: 16px;
-            color: var(--text-dark);
-        }
-
-        /* Контакты */
-        .contact {
-            background: linear-gradient(135deg, var(--primary) 0%, #004A80 100%);
-            color: var(--bg-white);
-            padding: 100px 20px;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 60px;
-        }
-
-        .contact-info h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 32px;
-        }
-
-        .contact-info p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        .contact-details {
-            display: grid;
-            gap: 24px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 18px;
-        }
-
-        .contact-item i {
-            font-size: 24px;
-            color: var(--accent);
-            min-width: 32px;
-        }
-
-        .contact-form .form-group {
-            margin-bottom: 24px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: var(--bg-white);
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .contact-form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 16px;
-            background: var(--accent);
-            color: var(--primary);
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .contact-form button:hover {
-            background: var(--bg-white);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* Футер */
-        footer {
-            background: var(--primary);
-            color: var(--bg-white);
-            padding: 60px 20px 30px;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .footer-col h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            position: relative;
-            padding-bottom: 12px;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 16px;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--bg-white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-social a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 40px;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Анимации при прокрутке */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Бургер-меню для мобильных */
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .burger-menu span {
-            width: 28px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 3px;
-            transition: var(--transition);
-        }
-
-        /* Адаптивность */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero p {
-                font-size: 20px;
-            }
-
-            nav ul {
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .burger-menu {
-                display: flex;
-            }
-
-            nav ul {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                flex-direction: column;
-                background: var(--bg-white);
-                width: 100%;
-                text-align: center;
-                padding: 40px 0;
-                transition: var(--transition);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-
-            nav ul.active {
-                left: 0;
-            }
-
-            nav ul li {
-                margin: 15px 0;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .section {
-                padding: 60px 20px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-links {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-container {
-                padding: 0 15px;
-            }
-
-            .hero {
-                padding: 140px 15px 80px;
-            }
-
-            .btn {
-                padding: 12px 24px;
-                font-size: 14px;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#06111f">
+<meta name="description" content="WebNat: создание, доработка, редизайн и техническое сопровождение коммерческих сайтов. Демонстрация будущего сайта.">
+<title>WebNat | Создание и развитие сайтов</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="hero.css">
+<link rel="stylesheet" href="sections.css">
+<script src="hero.js" defer></script>
+<script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Шапка -->
-    <header id="header">
-        <div class="header-container">
-            <div class="logo">
-                <div class="logo-text">Наталья <span>Плетнева</span></div>
-            </div>
-            <div class="burger-menu" id="burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="#about">Обо мне</a></li>
-                    <li><a href="#projects">Проекты</a></li>
-                    <li><a href="#skills">Навыки</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </nav>
-            <a href="#contact" class="btn">Связаться</a>
-        </div>
-    </header>
+<div class="ambient ambient-a" aria-hidden="true"></div><div class="ambient ambient-b" aria-hidden="true"></div>
+<header class="site-header" id="top"><div class="container header-layout">
+<a class="logo-link" href="#top" aria-label="WebNat, на главную"><img src="assets/webnat-logo.webp" alt="WebNat" width="186" height="57"></a>
+<nav class="nav" id="main-nav" aria-label="Основное меню"><a class="current" href="#top">Главная</a><a href="#services">Услуги</a><a href="#portfolio">Портфолио</a><a href="#pricing">Тарифы</a><a href="#about">Обо мне</a><a href="#contact">Контакты</a></nav>
+<a class="button button-primary header-cta" href="#contact" data-modal="request"><img class="ui-icon " src="assets/icon-send.svg" alt="" width="24" height="24" aria-hidden="true"><span>Обсудить проект</span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+</div></header>
+<main>
+<section class="hero" aria-labelledby="hero-title"><div class="container hero-shell"><div class="hero-layout">
+<div class="hero-copy reveal"><div class="eyebrow"><img class="ui-icon " src="assets/icon-code-slash.svg" alt="" width="24" height="24" aria-hidden="true"> Разработка сайтов под ключ</div>
+<h1 id="hero-title">Создание и улучшение <br class="hero-br">сайтов <span>для бизнеса <br class="hero-br">и проектов</span></h1>
+<p>Разрабатываю современные, быстрые и удобные сайты, дорабатываю и оптимизирую существующие, беру на себя техническую поддержку и развитие.</p>
+<div class="hero-buttons"><a href="#contact" class="button button-primary" data-modal="request"><img class="ui-icon " src="assets/icon-send.svg" alt="" width="24" height="24" aria-hidden="true"><span>Обсудить проект</span></a><a href="#portfolio" class="button button-outline">Смотреть работы <span>→</span></a></div>
+</div>
+</div></div>
+<div class="hero-art" aria-hidden="true"><div class="hero-scene">
+<picture class="hero-scene-bg"><source srcset="assets/hero-scene.webp" type="image/webp"><img src="assets/hero-scene.webp" alt="" width="2400" height="1061" loading="eager" fetchpriority="high"></picture>
+<div class="laptop-screen-ui">
+<div class="laptop-ui-nav"><img src="assets/webnat-logo.webp" alt="" width="186" height="57"><span>Главная　　Услуги　　Портфолио</span></div>
+<div class="laptop-ui-body"><strong>Современные<br>сайты для роста<br>вашего бизнеса</strong><span class="laptop-ui-btn">Обсудить проект</span></div>
+<div class="laptop-ui-cards"><article><img class="ui-icon " src="assets/icon-display.svg" alt="" width="24" height="24" aria-hidden="true"><span>Создание сайтов<small>От идеи до запуска</small></span></article><article><img class="ui-icon " src="assets/icon-gear.svg" alt="" width="24" height="24" aria-hidden="true"><span>Доработка сайтов<small>Новые возможности</small></span></article><article><img class="ui-icon " src="assets/icon-shield-check.svg" alt="" width="24" height="24" aria-hidden="true"><span>Поддержка<small>Развитие проекта</small></span></article></div>
+</div>
+<div class="floating-chip floating-code"><img class="ui-icon " src="assets/icon-code-slash.svg" alt="" width="24" height="24" aria-hidden="true"></div>
+<div class="floating-chip floating-wp"><img src="assets/wordpress.svg" alt="" width="64" height="64"></div>
+<div class="floating-chip floating-bitrix"><img src="assets/bitrix.svg" alt="" width="344" height="67"></div>
+</div></div>
+<div class="container hero-stats highlights">
+<div class="highlight"><img class="ui-icon " src="assets/icon-code-slash.svg" alt="" width="24" height="24" aria-hidden="true"><div><strong>Под ключ</strong><small>разработка сайтов</small></div></div>
+<div class="highlight"><img class="ui-icon " src="assets/icon-person.svg" alt="" width="24" height="24" aria-hidden="true"><div><strong>Лично</strong><small>веду ваш проект</small></div></div>
+<div class="highlight"><img class="ui-icon " src="assets/icon-lightning-charge.svg" alt="" width="24" height="24" aria-hidden="true"><div><strong>Быстрее</strong><small>оптимизирую загрузку</small></div></div>
+<div class="highlight"><img class="ui-icon " src="assets/icon-display.svg" alt="" width="24" height="24" aria-hidden="true"><div><strong>На связи</strong><small>поддержка и развитие</small></div></div>
+</div>
+</section>
+<section class="section services" id="services" aria-labelledby="services-title"><div class="container"><div class="section-heading reveal"><div><span class="overline">Услуги</span><h2 id="services-title">Чем могу быть полезна</h2></div><p>Комплексные решения для вашего сайта: от разработки с нуля до поддержки и развития.</p></div>
+<div class="service-grid">
+<article class="glass-card service-card reveal"><span class="service-icon brand-svg"><img class="block-icon " src="assets/icon-laptop.svg" alt="" width="40" height="40" aria-hidden="true"></span><h3>Создание сайтов</h3><p>Разрабатываю современные сайты под ваши задачи: корпоративные, коммерческие, каталоги и лендинги.</p><button type="button" class="service-detail-trigger" data-modal="service" aria-label="Подробнее: создание сайта"><img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></article>
+<article class="glass-card service-card reveal"><span class="service-icon brand-svg"><img class="block-icon " src="assets/icon-gear.svg" alt="" width="40" height="40" aria-hidden="true"></span><h3>Доработка сайтов</h3><p>Расширяю функционал, добавляю новые возможности и интеграции, улучшаю существующие сайты.</p><button type="button" class="service-detail-trigger" data-modal="service" aria-label="Подробнее: доработку сайта"><img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></article>
+<article class="glass-card service-card reveal"><span class="service-icon brand-svg"><img class="block-icon " src="assets/icon-brush.svg" alt="" width="40" height="40" aria-hidden="true"></span><h3>Редизайн</h3><p>Обновляю дизайн и структуру сайта, чтобы он выглядел современно, удобно и эффективно работал.</p><button type="button" class="service-detail-trigger" data-modal="service" aria-label="Подробнее: редизайн"><img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></article>
+<article class="glass-card service-card reveal"><span class="service-icon brand-svg"><img class="cms-wp" src="assets/wordpress.svg" alt="" width="48" height="48"></span><h3>WordPress</h3><p>Разрабатываю и дорабатываю сайты на WordPress: темы, плагины, настройка и оптимизация.</p><button type="button" class="service-detail-trigger" data-modal="service" aria-label="Подробнее: WordPress"><img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></article>
+<article class="glass-card service-card reveal"><span class="service-icon brand-svg"><img src="assets/bitrix-mark.svg" alt="" width="48" height="48"></span><h3>1С-Битрикс</h3><p>Разрабатываю и поддерживаю сайты на 1С-Битрикс: интеграции, настройки, доработки и оптимизация.</p><button type="button" class="service-detail-trigger" data-modal="service" aria-label="Подробнее: Битрикс"><img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></article>
+<article class="glass-card service-card reveal"><span class="service-icon brand-svg"><img class="block-icon " src="assets/icon-bar-chart-line.svg" alt="" width="40" height="40" aria-hidden="true"></span><h3>SEO и контент</h3><p>Оптимизирую сайт для поиска: тексты, структуру, метатеги и наполнение коммерческих страниц.</p><button type="button" class="service-detail-trigger" data-modal="service" aria-label="Подробнее: SEO"><img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></article>
+<article class="glass-card service-card service-wide reveal"><span class="service-icon brand-svg"><img class="block-icon " src="assets/icon-headset.svg" alt="" width="40" height="40" aria-hidden="true"></span><div><h3>Техническая поддержка</h3><p>Беру на себя обновления, резервные копии, решение ошибок и стабильную работу сайта.</p></div><button type="button" class="service-detail-trigger" data-modal="service" aria-label="Подробнее: техническую поддержку"><img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></article>
+</div></div></section>
+<section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title"><div class="side-aura" aria-hidden="true"></div><div class="container"><div class="section-heading reveal"><div><span class="overline">Портфолио</span><h2 id="portfolio-title">Примеры моих работ</h2></div><p>Демонстрационные концепции сайтов. Реальные кейсы добавлю отдельно.</p></div>
+<div class="portfolio-grid">
+<article class="glass-card project-card reveal"><div class="project-img"><img src="assets/portfolio-house.webp" alt="Демонстрационный дизайн сайта загородных домов" loading="lazy"><span class="project-tag"><img class="block-icon " src="assets/icon-house.svg" alt="" width="40" height="40" aria-hidden="true">Загородные дома</span></div><div class="project-text"><h3>Сайт строительной компании</h3><p>Корпоративный сайт, каталог и форма заявки</p><span class="concept-note">Демо-концепция</span><div class="project-labels"><span>Разработка</span><span>WordPress</span></div><button type="button" class="project-open" data-modal="project" aria-label="Подробнее: Сайт строительной компании"><img class="block-icon " src="assets/icon-box-arrow-up-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></div></article>
+<article class="glass-card project-card reveal"><div class="project-img"><img src="assets/portfolio-fitness.webp" alt="Демонстрационный дизайн сайта фитнес-клуба" loading="lazy"><span class="project-tag"><img class="block-icon " src="assets/icon-activity.svg" alt="" width="40" height="40" aria-hidden="true">Фитнес и спорт</span></div><div class="project-text"><h3>Сайт фитнес-клуба</h3><p>Лендинг с акцентом на запись и услуги</p><span class="concept-note">Демо-концепция</span><div class="project-labels"><span>Редизайн</span><span>UI/UX</span></div><button type="button" class="project-open" data-modal="project" aria-label="Подробнее: Сайт фитнес-клуба"><img class="block-icon " src="assets/icon-box-arrow-up-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></div></article>
+<article class="glass-card project-card reveal"><div class="project-img"><img src="assets/portfolio-headphones.webp" alt="Демонстрационный дизайн магазина электроники" loading="lazy"><span class="project-tag"><img class="block-icon " src="assets/icon-display.svg" alt="" width="40" height="40" aria-hidden="true">Электроника</span></div><div class="project-text"><h3>Интернет-магазин электроники</h3><p>Визуальная концепция товарного каталога</p><span class="concept-note">Демо-концепция</span><div class="project-labels"><span>Каталог</span><span>CMS</span></div><button type="button" class="project-open" data-modal="project" aria-label="Подробнее: Интернет-магазин электроники"><img class="block-icon " src="assets/icon-box-arrow-up-right.svg" alt="" width="40" height="40" aria-hidden="true"></button></div></article>
+</div></div></section>
+<section class="section about" id="about" aria-labelledby="about-title">
+<div class="container about-layout">
+<div class="about-copy reveal"><span class="about-eyebrow"><img class="block-icon " src="assets/icon-person.svg" alt="" width="40" height="40" aria-hidden="true">Обо мне</span>
+<h2 id="about-title">Наталья — разработчик <br>и создатель <span>WebNat</span></h2>
+<p>Создаю и развиваю коммерческие сайты, которые работают на ваш бизнес: привлекают клиентов, удобны в управлении и приносят результат.</p>
+<div class="tech-grid">
+<button class="tech-chip" data-info="WordPress: собственные темы, ACF, WooCommerce и доработки." type="button"><span class="tech-symbol"><img class="cms-wp" src="assets/wordpress.svg" alt="" width="44" height="44"></span><span class="tech-copy"><strong>WordPress</strong><small>Разработка тем,<br>настройка ACF,<br>доработка сайтов</small></span></button>
+<button class="tech-chip" data-info="1С-Битрикс: компоненты, интеграции и исправление ошибок." type="button"><span class="tech-symbol"><img class="" src="assets/bitrix-mark.svg" alt="" width="44" height="44"></span><span class="tech-copy"><strong>1С-Битрикс</strong><small>Интеграция, настройка,<br>доработка<br>и поддержка</small></span></button>
+<button class="tech-chip" data-info="HTML, CSS, JavaScript: адаптивная вёрстка и интерактивные интерфейсы." type="button"><span class="tech-symbol"><img class="cyan-icon" src="assets/icon-code-slash.svg" alt="" width="44" height="44"></span><span class="tech-copy"><strong>HTML / CSS / JS</strong><small>Адаптивная вёрстка,<br>интерактив, улучшение<br>функционала</small></span></button>
+<button class="tech-chip" data-info="Figma: дизайн страниц, прототипы и подготовка макетов к разработке." type="button"><span class="tech-symbol"><img class="" src="assets/figma.svg" alt="" width="44" height="44"></span><span class="tech-copy"><strong>Figma</strong><small>Дизайн, прототипы,<br>подготовка к разработке</small></span></button>
+<button class="tech-chip" data-info="SEO и контент: структура, метатеги и оптимизация страниц." type="button"><span class="tech-symbol"><img class="cyan-icon" src="assets/icon-bar-chart-line.svg" alt="" width="44" height="44"></span><span class="tech-copy"><strong>SEO и контент</strong><small>Оптимизация, тексты,<br>метатеги, структура</small></span></button>
+</div><p class="tech-hint" id="tech-hint" role="status" aria-live="polite">Наведите или нажмите на технологию, чтобы узнать подробнее.</p>
+<div class="about-actions"><a class="button button-primary" href="#contact" data-modal="request">Обсудить проект <img class="block-icon " src="assets/icon-arrow-right.svg" alt="" width="40" height="40" aria-hidden="true"></a><a class="button button-outline" href="#services">Посмотреть услуги</a></div>
+</div>
+<div class="portrait-scene reveal"><img class="portrait-photo" src="assets/natalia-original.webp" alt="Наталья, разработчик и создатель WebNat" loading="lazy" width="760" height="1140"><img class="portrait-logo" src="assets/webnat-logo.webp" alt="" width="186" height="57"></div>
+<div class="about-facts">
+<div><img class="block-icon " src="assets/icon-code-slash.svg" alt="" width="40" height="40" aria-hidden="true"><strong>Лично</strong><span>веду ваш проект</span></div>
+<div><img class="block-icon " src="assets/icon-layers.svg" alt="" width="40" height="40" aria-hidden="true"><strong>Под ключ</strong><span>от идеи до запуска</span></div>
+<div><img class="block-icon " src="assets/icon-rocket-takeoff.svg" alt="" width="40" height="40" aria-hidden="true"><strong>На связи</strong><span>поддержка и развитие</span></div>
+</div>
+</div></section>
+<section class="section process" id="process" aria-labelledby="process-title"><div class="container"><div class="section-heading reveal"><div><span class="overline">Как работаю</span><h2 id="process-title">От идеи до результата</h2></div><p>Прозрачный процесс: вы знаете, на каком этапе проект и что будет дальше.</p></div><div class="steps">
+<article class="step reveal"><span class="step-icon">☏</span><span class="step-no">01</span><h3>Обсуждение</h3><p>Выясняю задачи, цели и требования.</p></article>
+<article class="step reveal"><span class="step-icon">▤</span><span class="step-no">02</span><h3>План и дизайн</h3><p>Формирую структуру и визуальную концепцию.</p></article>
+<article class="step reveal"><span class="step-icon">&lt;/&gt;</span><span class="step-no">03</span><h3>Разработка</h3><p>Создаю сайт, настраиваю функции и интеграции.</p></article>
+<article class="step reveal"><span class="step-icon">✓</span><span class="step-no">04</span><h3>Тестирование</h3><p>Проверяю адаптивность, скорость и стабильность.</p></article>
+<article class="step reveal"><span class="step-icon">↗</span><span class="step-no">05</span><h3>Запуск</h3><p>Публикую и сопровождаю проект.</p></article>
+</div></div></section>
+<section class="section pricing" id="pricing" aria-labelledby="pricing-title"><div class="container"><div class="section-heading reveal"><div><span class="overline">Тарифы</span><h2 id="pricing-title">Решения под ваши задачи</h2></div><p>Примерные стартовые цены. Итоговая смета зависит от объёма, контента и функционала.</p></div><div class="pricing-grid">
+<article class="glass-card price-card reveal"><h3>Старт</h3><p>Компактный сайт для быстрого запуска</p><div class="price">от 30 000 ₽</div><ul><li>Лендинг или сайт-визитка</li><li>Адаптивный дизайн</li><li>Базовая SEO-подготовка</li></ul><a class="button button-outline" href="#contact" data-modal="request">Обсудить</a></article>
+<article class="glass-card price-card featured reveal"><span class="popular">Популярный</span><h3>Бизнес</h3><p>Сайт с индивидуальными решениями</p><div class="price">от 60 000 ₽</div><ul><li>Индивидуальный дизайн</li><li>Функционал и интеграции</li><li>Оптимизация скорости и SEO</li></ul><a class="button button-primary" href="#contact" data-modal="request">Обсудить проект →</a></article>
+<article class="glass-card price-card reveal"><h3>Поддержка</h3><p>Стабильная работа и развитие сайта</p><div class="price">от 5 000 ₽/мес.</div><ul><li>Техническое сопровождение</li><li>Исправления и обновления</li><li>Развитие функционала</li></ul><a class="button button-outline" href="#contact" data-modal="request">Обсудить</a></article>
+</div></div></section>
+<section class="section contact-section" id="contact"><div class="container"><div class="contact-panel reveal"><div class="contact-graphic" aria-hidden="true"><span>◢</span></div><div><span class="overline">Связаться со мной</span><h2>Давайте обсудим ваш проект</h2><p>Расскажите о задаче — я предложу подходящее решение, сроки и бюджет.</p></div><button class="button button-primary" type="button" id="contact-button" data-modal="request">Написать мне <span>↗</span></button></div><p class="demo-note">Демонстрационная версия. Подключение формы отправки, реальных контактов и CMS выполнится на этапе WordPress.</p></div></section>
+</main><footer class="footer"><div class="container footer-layout"><div><a class="logo-link" href="#top"><img src="assets/webnat-logo.webp" alt="WebNat" width="166" height="51" loading="lazy"></a><p>Создание, доработка и сопровождение сайтов<br>для бизнеса и проектов.</p></div><nav aria-label="Меню в подвале"><a href="#services">Услуги</a><a href="#portfolio">Портфолио</a><a href="#about">Обо мне</a><a href="#contact">Контакты</a></nav><p class="copyright">© WebNat · Прототип 2026</p></div></footer>
 
-    <!-- Герой-секция -->
-    <section class="hero">
-        <h1>Верстальщик / <br>WordPress-специалист</h1>
-        <p>Создаю сайты с нуля, оптимизирую под скорость и SEO. Более 5 лет опыта в веб-разработке.</p>
-        <div class="hero-buttons">
-            <a href="#projects" class="btn">Посмотреть проекты</a>
-            <a href="#contact" class="btn btn-outline">Связаться со мной</a>
-        </div>
-        <div class="hero-decor"></div>
-    </section>
-
-    <!-- Обо мне -->
-    <section class="section about" id="about">
-        <h2 class="section-title fade-in">Обо мне</h2>
-        <div class="about-content fade-in">
-            <p class="about-text">
-                Более 5 лет практики в веб-разработке: от адаптивной верстки (HTML5, CSS3, Bootstrap) до полного цикла запуска сайтов на WordPress и 1С-Битрикс.
-            </p>
-            <p class="about-text">
-                Сертифицированный специалист 1С-Битрикс с 3 официальными сертификатами. Недавно запустила интернет-магазин <strong>beauty-pharm.ru</strong> с нуля за 1 месяц — полностью самостоятельно: домен, хостинг, кастомизация шаблона, интеграция платежных систем, техническое SEO.
-            </p>
-            <p class="about-text">
-                Поддерживаю 50+ клиентских сайтов одновременно, улучшаю показатели Core Web Vitals на 25% через оптимизацию скорости загрузки. Готова брать проекты «под ключ» и быстро адаптироваться под стек вашей команды.
-            </p>
-        </div>
-
-        <div class="skills-grid fade-in">
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3 class="skill-title">Верстка</h3>
-                <p class="skill-desc">HTML5, CSS3, Bootstrap, адаптивная и кроссбраузерная верстка</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-wordpress"></i>
-                </div>
-                <h3 class="skill-title">WordPress</h3>
-                <p class="skill-desc">Интеграция, кастомизация тем, настройка WooCommerce</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <h3 class="skill-title">1С-Битрикс</h3>
-                <p class="skill-desc">3 сертификата: Администратор, Установка и настройка, Контент-менеджер</p>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="mailto:natasha_2110@mail.ru" class="btn" style="background: var(--primary); color: var(--accent);">Скачать резюме</a>
-        </div>
-    </section>
-
-    <!-- Проекты -->
-    <section class="section projects" id="projects">
-        <h2 class="section-title fade-in">Мои проекты</h2>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <div class="project-img">
-                    <i class="fas fa-shopping-bag"></i>
-                </div>
-                <div class="project-content">
-                    <span class="project-category">WordPress + WooCommerce</span>
-                    <h3 class="project-title">beauty-pharm.ru</h3>
-                    <p class="project-desc">Интернет-магазин косметики и БАДов, запущенный с нуля за 1 месяц. Полный цикл: домен → хостинг → кастомизация шаблона → интеграция платежных систем → техническое SEO → оптимизация скорости.</p>
-                    <a href="#" class="project-link">Подробнее <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-img">
-                    <i class="fas fa-building"></i>
-                </div>
-                <div class="project-content">
-                    <span class="project-category">1С-Битрикс</span>
-                    <h3 class="project-title">Корпоративный сайт</h3>
-                    <p class="project-desc">Разработка и поддержка корпоративного портала на 1С-Битрикс. Интеграция с CRM, настройка каталога товаров, техническая оптимизация.</p>
-                    <a href="#" class="project-link">Подробнее <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-img">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="project-content">
-                    <span class="project-category">Лендинг</span>
-                    <h3 class="project-title">Промо-сайт</h3>
-                    <p class="project-desc">Адаптивный лендинг с формой заявки, интеграцией с Яндекс.Метрикой и настройкой целей. Улучшение конверсии на 35%.</p>
-                    <a href="#" class="project-link">Подробнее <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Навыки -->
-    <section class="section skills" id="skills">
-        <h2 class="section-title fade-in">Технические навыки</h2>
-        <div class="skills-container">
-            <div class="skills-columns">
-                <div class="skill-column fade-in">
-                    <h3>Frontend</h3>
-                    <ul class="skill-list">
-                        <li><i class="fas fa-check-circle"></i> <span>HTML5, CSS3, Bootstrap</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>JavaScript (ES6+)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Адаптивная верстка</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Кроссбраузерность</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Figma (работа с макетами)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Photoshop (обработка изображений)</span></li>
-                    </ul>
-                </div>
-                <div class="skill-column fade-in">
-                    <h3>CMS</h3>
-                    <ul class="skill-list">
-                        <li><i class="fas fa-check-circle"></i> <span>WordPress (интеграция, кастомизация)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>1С-Битрикс (3 сертификата)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Joomla</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Modx</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>WooCommerce</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Настройка шаблонов</span></li>
-                    </ul>
-                </div>
-                <div class="skill-column fade-in">
-                    <h3>Инструменты</h3>
-                    <ul class="skill-list">
-                        <li><i class="fas fa-check-circle"></i> <span>Git (базовый)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Работа с хостингами (FastPanel, cPanel)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Настройка SSL, редиректов 301/302</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>SEO-оптимизация (метатеги, микроразметка)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Оптимизация скорости (кэширование, сжатие)</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span>Настройка метрик (Яндекс.Метрика, GA4)</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Контакты -->
-    <section class="section contact" id="contact">
-        <div class="contact-container">
-            <div class="contact-info fade-in">
-                <h2>Связаться со мной</h2>
-                <p>Готова обсудить ваш проект, ответить на вопросы и предложить решение под ваши задачи. Отвечаю быстро!</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+7 (963) 116-64-28</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>natasha_2110@mail.ru</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-telegram"></i>
-                        <span>telegram: @Nataliya_1207</span>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form fade-in">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Ваше имя *" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email *" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Сообщение *" required></textarea>
-                    </div>
-                    <button type="submit">Отправить сообщение</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Футер -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <div class="logo-text" style="font-size: 28px; margin-bottom: 20px;">Наталья <span style="color: var(--accent);">Плетнева</span></div>
-                <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
-                    Верстальщик / WordPress-специалист<br>
-                    Создаю сайты с нуля и оптимизирую под скорость
-                </p>
-                <div class="footer-social">
-                    <a href="https://t.me/Nataliya_1207" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h3>Навигация</h3>
-                <ul class="footer-links">
-                    <li><a href="#about">Обо мне</a></li>
-                    <li><a href="#projects">Проекты</a></li>
-                    <li><a href="#skills">Навыки</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Услуги</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Адаптивная верстка</a></li>
-                    <li><a href="#">Интеграция в WordPress</a></li>
-                    <li><a href="#">Техническая поддержка</a></li>
-                    <li><a href="#">SEO-оптимизация</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Контакты</h3>
-                <ul class="footer-links">
-                    <li><i class="fas fa-phone"></i> +7 (963) 116-64-28</li>
-                    <li><i class="fas fa-envelope"></i> natasha_2110@mail.ru</li>
-                    <li><i class="fab fa-telegram"></i> @Nataliya_1207</li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            © 2026 Наталья Плетнева. Все права защищены.
-        </div>
-    </footer>
-
-    <script>
-        // Бургер-меню
-        const burger = document.getElementById('burger');
-        const navMenu = document.getElementById('nav-menu');
-        
-        burger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            burger.classList.toggle('active');
-        });
-
-        // Закрытие меню при клике на ссылку
-        document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                burger.classList.remove('active');
-            });
-        });
-
-        // Прокрутка шапки
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Анимация при прокрутке
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        fadeElements.forEach(element => {
-            observer.observe(element);
-        });
-
-        // Обработка формы
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
-                contactForm.reset();
-            });
-        }
-
-        // Плавная прокрутка
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+<dialog class="site-modal" id="site-modal" aria-labelledby="modal-title" aria-describedby="modal-description">
+  <div class="modal-frame">
+    <button type="button" class="modal-close" id="modal-close" aria-label="Закрыть окно">×</button>
+    <span class="modal-eyebrow" id="modal-eyebrow">WEBNAT / СВЯЗАТЬСЯ</span>
+    <h2 id="modal-title">Обсудим ваш проект</h2>
+    <p id="modal-description">Расскажите о задаче — я подберу подходящее решение.</p>
+    <div class="modal-extra" id="modal-extra" hidden></div>
+    <form id="project-form" class="modal-form" autocomplete="on">
+      <div class="modal-form-row">
+        <label>Как к вам обращаться<input name="name" placeholder="Ваше имя" autocomplete="name" required maxlength="80"></label>
+        <label>Как с вами связаться<input name="contact" placeholder="Email или телефон" required maxlength="130"></label>
+      </div>
+      <label>Какая услуга нужна?
+        <select name="service" id="request-service">
+          <option value="">Выберите направление</option>
+          <option>Создание сайтов</option><option>Доработка сайтов</option><option>Редизайн</option><option>WordPress</option><option>1С-Битрикс</option><option>SEO и контент</option><option>Техническая поддержка</option><option>Тариф «Старт»</option><option>Тариф «Бизнес»</option><option>Тариф «Поддержка»</option>
+        </select>
+      </label>
+      <label>Расскажите о задаче<textarea name="message" rows="4" placeholder="Кратко опишите сайт или задачу" required maxlength="2000"></textarea></label>
+      <p class="modal-form-note">Демонстрационная форма. Заявка пока не отправляется на сервер. Можно скопировать заполненный текст.</p>
+      <div class="modal-actions"><button class="button button-primary" type="submit">Скопировать заявку <span aria-hidden="true">↗</span></button><button class="button button-outline modal-cancel" type="button">Закрыть</button></div>
+      <p class="form-result" id="form-result" role="status" aria-live="polite"></p>
+    </form>
+    <div class="modal-details-actions" id="modal-details-actions" hidden><button type="button" class="button button-primary" id="modal-request-from-detail">Обсудить такой проект ↗</button></div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
