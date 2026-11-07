@@ -88,3 +88,14 @@
 @media(max-width:360px){.services .service-card{padding:18px 14px;gap:10px;grid-template-columns:36px 1fr}.services .service-card h3{font-size:16px}.services .service-card p{font-size:12px}.services .service-card .service-icon,.service-icon img{width:34px;height:34px}.services .service-detail-trigger{right:12px;top:14px;width:30px;height:30px}.about .tech-copy strong{font-size:14px}.about .tech-chip{padding:15px 10px}.about-facts>div{padding:0 8px}.about-facts strong{font-size:15px}.about-facts span{font-size:10px}.about h2{font-size:31px}.about .portrait-scene{height:450px}.about .portrait-photo{height:530px}}
 @media(max-width:1024px){.about{background-size:auto 760px;background-position:100% bottom}.about .portrait-logo{display:none}.about::before{content:"";position:absolute;z-index:1;inset:auto 0 660px;height:100px;pointer-events:none;background:linear-gradient(#020e19,transparent)}}
 @media(max-width:700px){.about{background-size:auto 580px;background-position:85% bottom}.about::before{bottom:480px}}
+
+/* Portrait correction: complete shoulders, plain shirt, separate living halo. */
+.about .portrait-photo{mask-image:linear-gradient(#000 0%,#000 80%,transparent 99%);mask-mode:alpha;mask-size:100% 100%;mask-position:center;mask-composite:add;object-fit:contain;object-position:center top}
+.about .portrait-logo{display:none}
+.about .portrait-scene::before{content:"";position:absolute;z-index:1;left:3%;top:16%;width:94%;aspect-ratio:1;border:2px solid #65faff;border-right-color:#ffdb9c;border-bottom-color:#6883ff;border-radius:50%;box-shadow:0 0 9px #6ffaff,0 0 27px #00c8ff99,inset 0 0 18px #00dfff44;animation:webnat-halo-glow 4s ease-in-out infinite;pointer-events:none}
+@keyframes webnat-halo-glow{0%,100%{opacity:.65;filter:brightness(1)}50%{opacity:1;filter:brightness(1.35);box-shadow:0 0 13px #6ffaff,0 0 42px #00c8ffb3,inset 0 0 24px #00dfff66}}
+@media(prefers-reduced-motion:reduce){.about .portrait-scene::before{animation:none}}
+
+.about .portrait-scene::before{border:0;box-shadow:0 0 30px 7px #23e5ff80,inset 0 0 28px #20ddff60;filter:blur(9px);animation:webnat-halo-soft 4s ease-in-out infinite}
+@keyframes webnat-halo-soft{0%,100%{opacity:.45;filter:blur(9px) brightness(.9)}50%{opacity:.95;filter:blur(9px) brightness(1.4)}}
+@media(prefers-reduced-motion:reduce){.about .portrait-scene::before{animation:none}}
