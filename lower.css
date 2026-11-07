@@ -1,3 +1,44 @@
+/* Completed lower blocks, isolated from the approved upper sections. */
+
+.service-card:hover,.price-card:hover,.project-card:hover{transform:none;border-color:#4b788a;box-shadow:inset 0 1px 0 #ffffff0d}
+.pricing{background:radial-gradient(ellipse at 100% 90%,#047c8440,transparent 35%),#060f1b}
+.pricing-grid{gap:22px}
+.price-card{padding:25px 28px;min-height:306px}
+.price-card h3{font-size:21px;margin:0 0 6px}
+.price-card>p{font-size:12px;line-height:1.45;min-height:35px;margin-bottom:0}
+.price{font-size:30px;letter-spacing:-.04em;margin:18px 0 16px;padding-bottom:10px;border-bottom:1px solid #53657733}
+.price-card ul{margin-bottom:21px}
+.price-card li{font-size:12px;line-height:1.45;margin-bottom:10px}
+.price-card .button{font-size:12px;min-height:41px;padding:10px 15px;border-radius:10px}
+.price-card.featured{border-color:#28e5ed;box-shadow:0 0 0 1px #28e5ed25,inset 0 0 25px #0099bb0a}
+.popular{font-size:9px;right:17px;top:17px;padding:5px 11px}
+.contact-section.section{padding-top:12px;padding-bottom:32px;background:#060f1b}
+.contact-panel{overflow:clip;grid-template-columns:190px minmax(0,1fr) auto;gap:28px;min-height:150px;padding:20px 35px 20px 22px;background:radial-gradient(ellipse at 98% 100%,#099aaf85,transparent 46%),linear-gradient(110deg,#30477c,#142438 35%,#0a2637 75%);border-color:#4f91ac;border-radius:24px;box-shadow:none}
+.contact-graphic{display:block;height:120px;width:190px;font-size:0;transform:none;text-shadow:none;position:relative;z-index:1}
+.contact-graphic svg{width:100%;height:100%}
+.contact-panel::after{width:520px;height:160px;bottom:-133px;right:-70px;transform:rotate(-16deg);box-shadow:0 0 30px #12d9e955}
+.contact-copy{position:relative;z-index:1}
+.contact-panel h2{font-size:30px;margin-bottom:9px}
+.contact-panel p{font-size:14px;line-height:1.5;max-width:510px}
+.contact-panel .button{min-height:46px;border-radius:11px;font-size:13px;padding:12px 22px;box-shadow:none}
+.demo-note{font-size:10px;color:#8d9fb2;margin-top:12px}
+.footer{padding:31px 0 25px;background:linear-gradient(180deg,#08121e,#050c16);border-top-color:#172838}
+.footer-layout{display:grid;grid-template-columns:1.5fr .8fr 1fr 1fr;gap:50px;align-items:start}
+.footer .logo-link{width:165px}
+.footer p{font-size:11px;line-height:1.6;margin-top:15px}
+.footer h2{font-size:13px;line-height:1.4;letter-spacing:0;margin:0 0 10px;color:#f2f8fc}
+.footer nav{display:flex;flex-direction:column;align-items:flex-start;gap:5px;font-size:11px}
+.footer nav h2{margin-bottom:5px}
+.footer nav button{padding:0;border:0;background:none;text-align:left;font-size:11px;color:#becedc;line-height:1.6}
+.footer nav button:hover{color:#2cdff0}
+.footer-contact-link{display:flex;align-items:center;gap:9px;background:none;border:0;padding:0;color:#d4e6f3;font-size:11px;text-align:left}
+.footer-contact-link svg{width:21px;height:21px;color:#29e4ed;flex:none}
+.footer-contact p{font-size:10px;margin-top:11px}
+.back-to-top{display:grid;place-items:center;width:34px;height:34px;margin-top:14px;border:1px solid #30586e;border-radius:50%;color:#3be3ff;font-size:20px}
+.footer .copyright{margin:20px 0 0;font-size:10px;color:#8f9daf}
+@media(min-width:901px) and (max-width:1150px){.footer-layout{gap:30px}}
+@media(max-width:900px){.pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.price-card{padding:22px 18px}.price{font-size:25px}.popular{position:static;align-self:flex-start;order:-1;margin-bottom:9px}.price-card.featured h3{margin-top:0}.contact-panel{grid-template-columns:120px 1fr;gap:20px}.contact-graphic{width:120px}.contact-panel .button{grid-column:2;justify-self:start}.footer-layout{grid-template-columns:1.3fr 1fr;gap:30px 45px}}
+@media(max-width:620px){.pricing-grid{grid-template-columns:1fr;gap:17px}.price-card{min-height:310px;padding:25px}.price-card h3{font-size:22px}.price-card>p{font-size:13px}.price{font-size:31px}.price-card li{font-size:13px}.popular{position:absolute;top:20px;right:20px;font-size:10px;order:0}.contact-section.section{padding-top:7px;padding-bottom:29px}.contact-panel{display:grid;grid-template-columns:1fr 86px;padding:25px;gap:0 10px}.contact-graphic{grid-column:2;grid-row:1;width:100px;height:90px;align-self:start;margin-left:-10px}.contact-copy{grid-column:1;grid-row:1}.contact-panel h2{font-size:25px}.contact-panel p{font-size:12px;margin-bottom:0}.contact-panel .button{grid-column:1/-1;width:100%;margin-top:22px}.demo-note{font-size:10px}.footer-layout{grid-template-columns:1fr 1fr;gap:28px 22px}.footer-brand{grid-column:1/-1}.footer .logo-link{width:154px}.footer-contact{grid-column:1/-1;display:grid;grid-template-columns:1fr auto}.footer-contact h2,.footer-contact-link,.footer-contact p{grid-column:1}.back-to-top{grid-column:2;grid-row:1/4;align-self:center}.footer nav,.footer nav button,.footer-contact-link{font-size:12px}.footer h2{font-size:14px}}
 /* Lower blocks follow IMG_3703; existing stage content is retained. */
 .process,.pricing,.contact-section,.footer{--lower-surface:#04101f;--lower-accent:#20e3f0}
 .process{isolation:isolate;background:radial-gradient(ellipse at 85% 80%,#07314a50,transparent 55%),linear-gradient(#061322,#03101e)}
