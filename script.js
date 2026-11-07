@@ -5,9 +5,10 @@ menuToggle?.addEventListener('click', () => {
   menuToggle.setAttribute('aria-expanded', String(open));
   menuToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
 });
-nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
   nav.classList.remove('open');
   menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Открыть меню');
 }));
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if ('IntersectionObserver' in window && !reduceMotion) {
@@ -59,10 +60,24 @@ function showModal(mode, topic='') {
   formResult.textContent='';
   extra.hidden=true;
   extra.replaceChildren();
-  const isDetail=mode==='service'||mode==='project';
+  const isDetail=mode==='service'||mode==='project'||mode==='portfolio';
   form.hidden=isDetail;
   detailsActions.hidden=!isDetail;
-  if(mode==='service'){
+  if(mode==='portfolio'){
+    modalEyebrow.textContent='Портфолио WebNat';
+    modalTitle.textContent='Все проекты';
+    modalDesc.textContent='Демонстрационные концепции для разных направлений бизнеса.';
+    const gallery=document.createElement('div');gallery.className='modal-portfolio';
+    document.querySelectorAll('.project-card').forEach(card=>{
+      const item=document.createElement('article');
+      const image=card.querySelector('img').cloneNode();image.removeAttribute('loading');
+      const copy=document.createElement('div');
+      const title=document.createElement('h3');title.textContent=card.querySelector('h3').textContent;
+      const desc=document.createElement('p');desc.textContent=card.querySelector('.project-text>p').textContent;
+      copy.append(title,desc);item.append(image,copy);gallery.append(item);
+    });
+    extra.append(gallery);extra.hidden=false;
+  }else if(mode==='service'){
     modalEyebrow.textContent='WEBNAT / УСЛУГА';
     modalTitle.textContent=topic;
     modalDesc.textContent='Что может входить в работу по этому направлению:';
@@ -74,7 +89,9 @@ function showModal(mode, topic='') {
     modalEyebrow.textContent='WEBNAT / КОНЦЕПЦИЯ';
     modalTitle.textContent=topic;
     modalDesc.textContent='Демонстрационная визуальная концепция. Это пример направления, а не подтверждённый коммерческий кейс.';
-    const p=document.createElement('p');p.textContent='Предлагаю обсудить сайт с похожей структурой, дизайном и функциональностью для вашего бизнеса.';extra.append(p);extra.hidden=false;
+    const card=Array.from(document.querySelectorAll('.project-card')).find(card=>card.querySelector('h3').textContent.trim()===topic);
+    if(card){const image=card.querySelector('img').cloneNode();image.className='modal-project-image';image.removeAttribute('loading');extra.append(image)}
+    const p=document.createElement('p');p.textContent='Можем обсудить сайт с похожей структурой, дизайном и функциональностью для вашего бизнеса.';extra.append(p);extra.hidden=false;
   }else{
     modalEyebrow.textContent='WEBNAT / СВЯЗАТЬСЯ';
     modalTitle.textContent='Давайте обсудим ваш проект';
@@ -82,22 +99,26 @@ function showModal(mode, topic='') {
     serviceSelect.value=Array.from(serviceSelect.options).some(x=>x.value===topic)?topic:'';
   }
   if(!dialog.open){dialog.showModal();document.body.classList.add('modal-open')}
+  if(!isDetail)form.querySelector('input')?.focus();
+  else document.getElementById('modal-close').focus();
 }
 function closeModal(){if(dialog.open)dialog.close()}
-dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');returnFocus?.focus?.();returnFocus=null});
+dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');returnFocus?.focus?.({preventScroll:true});returnFocus=null});
 dialog.addEventListener('click',event=>{if(event.target===dialog)closeModal()});
 document.getElementById('modal-close').addEventListener('click',closeModal);
 document.querySelector('.modal-cancel').addEventListener('click',closeModal);
 document.getElementById('modal-request-from-detail').addEventListener('click',()=>showModal('request',selectedTopic));
-document.querySelectorAll('[data-modal]').forEach(el=>el.addEventListener('click',event=>{
+document.addEventListener('click',event=>{
+  const el=event.target.closest('[data-modal]');
+  if(!el)return;
   event.preventDefault();
   returnFocus=el;
   let topic='';let mode=el.dataset.modal;
-  if(mode==='service')topic=el.closest('.service-card')?.querySelector('h3')?.textContent?.trim() || 'Техническая поддержка';
+  if(mode==='service')topic=el.dataset.topic || el.closest('.service-card')?.querySelector('h3')?.textContent?.trim() || 'Техническая поддержка';
   if(mode==='project')topic=el.closest('.project-card')?.querySelector('h3')?.textContent?.trim() || 'Демопроект';
   if(mode==='request')topic=el.closest('.price-card')?`Тариф «${el.closest('.price-card').querySelector('h3').textContent.trim()}»`:'';
   showModal(mode,topic);
-}));
+});
 form.addEventListener('submit',async event=>{
   event.preventDefault();
   if(!form.reportValidity())return;
@@ -106,3 +127,13 @@ form.addEventListener('submit',async event=>{
   try{await navigator.clipboard.writeText(body);formResult.textContent='Текст заявки скопирован. Отправка на сервер пока не подключена.'}
   catch{formResult.textContent='Браузер не разрешил копирование. Вы можете выделить и скопировать данные вручную.'}
 });
+
+const year=document.getElementById('copyright-year');
+if(year)year.textContent=String(new Date().getFullYear());
+
+// Animate the stage connector only while this block is in view.
+const processSection=document.querySelector('.process');
+if(processSection && 'IntersectionObserver' in window && !reduceMotion){
+  const lineObserver=new IntersectionObserver(entries=>entries.forEach(entry=>entry.target.classList.toggle('is-visible',entry.isIntersecting)),{threshold:.12});
+  lineObserver.observe(processSection);
+}
